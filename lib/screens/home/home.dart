@@ -1,3 +1,4 @@
+import 'package:clone_iti_itau/screens/home/widgets/action_card.dart';
 import 'package:clone_iti_itau/util/colors.dart';
 import 'package:clone_iti_itau/util/styles.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  bool _showBalance = true;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +68,21 @@ class _HomePageState extends State<HomePage> {
           width: imageSize + borderWidth,
           height: imageSize + borderWidth,
         ),
-        ClipOval(child: Image.asset(imagePath, width: imageSize, height: imageSize, fit: BoxFit.fill,)),
+        ClipOval(
+          child: Image.asset(imagePath, width: imageSize, height: imageSize, fit: BoxFit.fill,)
+        ),
       ],
     );
+  }
+
+  String _getBalance() {
+    return _showBalance ? "R\$ 1.042.000,00" : "R\$ --";
+  }
+
+  _toggleBalance() {
+    setState(() {
+      _showBalance = !_showBalance;
+    });
   }
 
   Widget _infoBalance() {
@@ -76,9 +90,12 @@ class _HomePageState extends State<HomePage> {
       children: <Widget>[
         Text("oi Pedro, seu saldo agora é:", style: TextStyle(color: Colors.white, fontSize: 18.0),),
         SizedBox(height: AppStyles.marginSmall,),
-        Text("R\$ 1.235.353,00", style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w600),),
+        Text(_getBalance(), style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w600),),
         SizedBox(height: AppStyles.marginSmall,),
-        Icon(Icons.visibility_off, size: 26.0, color: Colors.white,)
+        InkWell(
+          onTap: () => _toggleBalance(),
+          child: Icon(_showBalance ? Icons.visibility_off : Icons.visibility, size: 26.0, color: Colors.white,)
+        )
       ],
     );
   }
@@ -90,26 +107,10 @@ class _HomePageState extends State<HomePage> {
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.only(left: AppStyles.marginSmall, right: AppStyles.marginSmall),
         children: <Widget>[
-          Container(
-            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
-            width: 150.0,
-            color: Colors.red,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
-            width: 150.0,
-            color: Colors.red,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
-            width: 150.0,
-            color: Colors.red,
-          ),
-          Container(
-            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
-            width: 150.0,
-            color: Colors.red,
-          ),
+          ActionCard("pagar", "agora", Icons.attach_money),
+          ActionCard("cobrar", "alguém", Icons.person_outline),
+          ActionCard("colocar", "dinheiro", Icons.monetization_on),
+          ActionCard("cadastrar", "cartão", Icons.credit_card),
         ],
       ),
     );
