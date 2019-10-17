@@ -10,6 +10,7 @@ class CloneIti extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        fontFamily: 'Nunito'
       ),
       initialRoute: Routes.HOME,
       routes: Routes().routes,

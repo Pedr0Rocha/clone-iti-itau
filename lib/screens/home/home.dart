@@ -14,7 +14,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("iti", style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight: FontWeight.w500),),
+        title: Text("iti", style: TextStyle(color: Colors.white, fontSize: 36.0, fontWeight: FontWeight.w600),),
         leading: Icon(Icons.camera_alt),
         backgroundColor: AppColors.background,
         centerTitle: true,
@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
   Widget _body() {
     return SingleChildScrollView(
       child: Container(
-        height: MediaQuery.of(context).size.height,
+        height: MediaQuery.of(context).size.height - kToolbarHeight,
         color: AppColors.background,
         child: Column(
           children: <Widget>[
@@ -74,9 +74,11 @@ class _HomePageState extends State<HomePage> {
   Widget _infoBalance() {
     return Column(
       children: <Widget>[
-        Text("oi Pedro, seu saldo agora é:"),
-        Text("R\$ 1.235.353,00"),
-        Icon(Icons.visibility_off)
+        Text("oi Pedro, seu saldo agora é:", style: TextStyle(color: Colors.white, fontSize: 18.0),),
+        SizedBox(height: AppStyles.marginSmall,),
+        Text("R\$ 1.235.353,00", style: TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w600),),
+        SizedBox(height: AppStyles.marginSmall,),
+        Icon(Icons.visibility_off, size: 26.0, color: Colors.white,)
       ],
     );
   }
