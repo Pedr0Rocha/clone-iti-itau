@@ -1,4 +1,5 @@
 import 'package:clone_iti_itau/util/colors.dart';
+import 'package:clone_iti_itau/util/styles.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -30,9 +31,13 @@ class _HomePageState extends State<HomePage> {
         color: AppColors.background,
         child: Column(
           children: <Widget>[
+            SizedBox(height: AppStyles.marginBig,),
             _userAvatar(),
+            SizedBox(height: AppStyles.marginBig,),
             _infoBalance(),
-            _carouselActions(),
+            SizedBox(height: AppStyles.marginBig,),
+            _actions(),
+            _footer(),
           ],
         ),
       ),
@@ -67,10 +72,48 @@ class _HomePageState extends State<HomePage> {
   }
 
   Widget _infoBalance() {
-    return Container();
+    return Column(
+      children: <Widget>[
+        Text("oi Pedro, seu saldo agora é:"),
+        Text("R\$ 1.235.353,00"),
+        Icon(Icons.visibility_off)
+      ],
+    );
   }
 
-  Widget _carouselActions() {
-    return Container();
+  Widget _actions() {
+    return Container(
+      height: 180.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.only(left: AppStyles.marginSmall, right: AppStyles.marginSmall),
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _footer() {
+    return Text("arraste aqui");
   }
 }
