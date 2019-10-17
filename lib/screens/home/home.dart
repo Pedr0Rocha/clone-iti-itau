@@ -1,48 +1,119 @@
+import 'package:clone_iti_itau/util/colors.dart';
+import 'package:clone_iti_itau/util/styles.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
 
   @override
   _HomePageState createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text("iti", style: TextStyle(color: Colors.white, fontSize: 26.0, fontWeight: FontWeight.w500),),
+        leading: Icon(Icons.camera_alt),
+        backgroundColor: AppColors.background,
+        centerTitle: true,
+        elevation: 0,
       ),
-      body: Center(
+      body: _body(),
+    );
+  }
+
+  Widget _body() {
+    return SingleChildScrollView(
+      child: Container(
+        height: MediaQuery.of(context).size.height,
+        color: AppColors.background,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
+            SizedBox(height: AppStyles.marginBig,),
+            _userAvatar(),
+            SizedBox(height: AppStyles.marginBig,),
+            _infoBalance(),
+            SizedBox(height: AppStyles.marginBig,),
+            _actions(),
+            _footer(),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+
+  Widget _userAvatar() {
+    return Stack(
+      alignment: Alignment.bottomRight,
+      children: <Widget>[
+        _roundImageWithBorder(imagePath: "assets/img/user.png", imageSize: 80.0, borderWidth: 3.0),
+        _roundImageWithBorder(imagePath: "assets/img/qrcode.png", imageSize: 25.0, borderWidth: 3.0),
+      ],
+    );
+  }
+
+  Widget _roundImageWithBorder({ String imagePath, double imageSize, double borderWidth }) {
+    return Stack(
+      alignment: Alignment.center,
+      children: <Widget>[
+        Container(
+          decoration: BoxDecoration(
+            color: AppColors.orange,
+            borderRadius: BorderRadius.circular(imageSize),
+          ),
+          width: imageSize + borderWidth,
+          height: imageSize + borderWidth,
+        ),
+        ClipOval(child: Image.asset(imagePath, width: imageSize, height: imageSize, fit: BoxFit.fill,)),
+      ],
+    );
+  }
+
+  Widget _infoBalance() {
+    return Column(
+      children: <Widget>[
+        Text("oi Pedro, seu saldo agora é:"),
+        Text("R\$ 1.235.353,00"),
+        Icon(Icons.visibility_off)
+      ],
+    );
+  }
+
+  Widget _actions() {
+    return Container(
+      height: 180.0,
+      child: ListView(
+        scrollDirection: Axis.horizontal,
+        padding: EdgeInsets.only(left: AppStyles.marginSmall, right: AppStyles.marginSmall),
+        children: <Widget>[
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+          Container(
+            margin: EdgeInsets.only(left: AppStyles.marginTiny, right: AppStyles.marginTiny),
+            width: 150.0,
+            color: Colors.red,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _footer() {
+    return Text("arraste aqui");
   }
 }

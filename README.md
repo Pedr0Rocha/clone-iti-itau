@@ -6,8 +6,10 @@ Clone do app iti do Itaú feito em Flutter.
 
 #### Criando o projeto
 
-#### Adicionando dependências
+#### Hot Reload
 
 #### Estrutura de pastas
+
+#### Adicionando dependências
 
 #### Routes e Navigation
