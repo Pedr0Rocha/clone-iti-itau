@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class Routes {
 
-  static const HOME = "/home";
+  static const HOME = "/";
   static const SOBRE = "/sobre";
 
   final routes = <String, WidgetBuilder>{
